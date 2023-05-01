@@ -14,7 +14,9 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-// Start defining your routes here
+// Start defining your routes here - creating app.get which is a get request
+// We give it a path to handle the response, which is nominations as example, and then we can ask 
+// questions things the users has sent to us like URL, params etc.
 app.get('/', (req, res) => {
   res.send('Hello world')
 })
@@ -23,6 +25,9 @@ app.get('/nominations', (req, res) => {
   res.json(data)
 })
 
+//Here we GET the data variable out of the URL, with the year as placeholder
+// that becomes req.params.year - We then use that to filter our array
+// and return only the items that match that. 
 app.get('/year/:year', (req, res) => {
   const year = req.params.year
   const showWon = req.query.won
